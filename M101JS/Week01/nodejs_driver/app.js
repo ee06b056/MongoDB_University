@@ -10,16 +10,14 @@ MongoClient.connect(url,function (err, client) {
     console.log('Successfully connected to server');
 
     const db = client.db(dbName);
-
-    
-
-    db.collection('movies').find({}).toArray(function (err, docs) {
+ 
+    const coll = db.collection('movies');
+    coll.find({}).toArray(function (err, docs) {
         docs.forEach((doc) => {
-            console.log(doc.title);
+            console.log(doc);
         });
     });
 
-    
     console.log('Called find()');
 
     client.close();
